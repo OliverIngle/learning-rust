@@ -32,11 +32,10 @@ fn main() {
 
 }
 
-/*
-fn my_func() {
-    println!("my_func was called!");
-}
-*/
+//fn my_func() {
+//   println!("my_func was called!");
+//}
+
 
 fn add_one (x: i32) -> i32 {
     x + 1

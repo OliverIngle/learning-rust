@@ -2,7 +2,7 @@ fn main() {
 
     // Scalar types
     // Ints
-    let y = 50;
+    let y = 0b10100101;
     println!("y in binairy is {:b}", y);
 
     // Mutability, floats
@@ -35,12 +35,12 @@ fn main() {
     let division: f64 = 5. / 3.; // only works with floats
     println!("division is {}", division);
 
-    /*let sum = 1 + 3;
-    let diff = 3  - 5;
-    let prod = 5 * 4;
-    let floored = 5 / 8;
-    let remainder = 8 % 3;
-    */
+    //let sum = 1 + 3;
+    //let diff = 3  - 5;
+    //let prod = 5 * 4;
+    //let floored = 5 / 8;
+    //let remainder = 8 % 3;
+    
 
     // Booleans
     let t = true;
