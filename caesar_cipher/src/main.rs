@@ -35,14 +35,17 @@ fn main() {
 }
 
 fn cipher(text: &String, shift: u32) -> String {
-    
+
     let mut ciphered = String::new();
 
     for c in text.chars() {
         match char::from_u32(c as u32 + shift) {
-            Some(character) => ciphered.push(character),
+            Some(character) => {
+                println!("{} -> {}", c, character);
+                ciphered.push(character);
+            },
             None => {
-                println!("Unable to shift character '{}', so kept as original.", c);
+                println!("Unable to shift character '{}', so kept as original. (shift probably exceded highest unicode value)", c);
                 ciphered.push(c);
             }
         }
