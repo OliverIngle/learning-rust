@@ -1,56 +1,21 @@
-use std::io;
-use std::char;
+use std::env;
+use caesar_cipher::Cipher;
+use std::process;
 
 fn main() {
 
+    let args: Vec<String> = env::args().collect();
+
+    let cipher = Cipher::new(&args).unwrap_or_else(|err| {
+        println!("{}", err);
+        process::exit(1);    
+    });
     
+    let cipher_text = cipher.apply().unwrap_or_else(|err| {
+        println!("{}", err);
+        process::exit(1);    
+    });
 
-    println!("Text to be ciphered:");
-    let mut text = String::new();
-    match io::stdin().read_line(&mut text) {
-        Ok(_) => println!("Success"),
-        Err(_) => println!("Error: failed to read input")
-    }
-
-    println!("Shift [u32 number]:");
-    let mut shift = String::new();
-    match io::stdin().read_line(&mut shift) {
-        Ok(_) => println!("Success"),
-        Err(_) => println!("Error: failed to read input")
-    }
-
-    let text: String = text
-        .trim()
-        .to_string();
-
-    let shift: u32 = shift
-        .trim()
-        .parse()
-        .expect("Error: failed to convert input to u8");
-
-    let result = cipher(&text, shift);
-    println!("Result: {}", result)
-
-
+    println!("{:?}", cipher_text);
 }
 
-fn cipher(text: &String, shift: u32) -> String {
-
-    let mut ciphered = String::new();
-
-    for c in text.chars() {
-        match char::from_u32(c as u32 + shift) {
-            Some(character) => {
-                println!("{} -> {}", c, character);
-                ciphered.push(character);
-            },
-            None => {
-                println!("Unable to shift character '{}', so kept as original. (shift probably exceded highest unicode value)", c);
-                ciphered.push(c);
-            }
-        }
-    }
-
-    ciphered
-
-}
